@@ -2,64 +2,318 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* ─────────────────────────────────────────
+   DESIGN TOKENS
+   Ink dark + warm off-white + muted clay accent
+   ───────────────────────────────────────── */
+:root {
+  --bg:          #0E0E0C;   /* warm ink black — not cold navy */
+  --bg-surface:  #161614;   /* cards, panels */
+  --bg-border:   #2A2A26;   /* subtle dividers */
+
+  --text-primary:   #F0EBE1; /* warm off-white, not pure #FFF */
+  --text-secondary: #8C8880; /* muted, readable */
+  --text-ghost:     #4A4844; /* timestamps, labels */
+
+  --accent:       #C4785A;  /* muted clay — warm, human, uncommon */
+  --accent-dim:   rgba(196, 120, 90, 0.12);
+  --accent-hover: #D4896B;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  --transition-fast:   150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow:   400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─────────────────────────────────────────
+   RESET & BASE
+   ───────────────────────────────────────── */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  background: #020617;
-  color: white;
-}
-
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes blob {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  line-height: 1.6;
 }
 
-.animate-blob {
-  animation: blob 7s infinite;
+/* ─────────────────────────────────────────
+   TYPOGRAPHY SCALE
+   ───────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-dm-serif), 'Georgia', serif;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
 }
 
-.animation-delay-2000 {
-  animation-delay: 2s;
+p, li, span {
+  color: var(--text-secondary);
 }
 
-.animation-delay-4000 {
-  animation-delay: 4s;
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
-/* Custom scrollbar */
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* ─────────────────────────────────────────
+   SCROLLBAR — minimal, no purple
+   ───────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: rgba(147, 51, 234, 0.3);
-  border-radius: 4px;
+  background: var(--bg-border);
+  border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(147, 51, 234, 0.5);
+  background: var(--text-ghost);
 }
-
-/* For Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(147, 51, 234, 0.3) transparent;
+  scrollbar-color: var(--bg-border) transparent;
+}
+
+/* ─────────────────────────────────────────
+   SELECTION COLOR
+   ───────────────────────────────────────── */
+::selection {
+  background: var(--accent-dim);
+  color: var(--text-primary);
+}
+
+/* ─────────────────────────────────────────
+   LAYOUT UTILITIES
+   ───────────────────────────────────────── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+/* ─────────────────────────────────────────
+   SURFACE / CARD
+   ───────────────────────────────────────── */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-normal),
+              transform var(--transition-slow);
+}
+
+.card:hover {
+  border-color: rgba(196, 120, 90, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ─────────────────────────────────────────
+   BUTTONS
+   ───────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background: var(--accent);
+  color: #0E0E0C;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-fast),
+              transform var(--transition-fast);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  color: #0E0E0C;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background: transparent;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition-fast),
+              color var(--transition-fast),
+              transform var(--transition-fast);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────────
+   ACCENT RULE — the one signature detail
+   A thin horizontal line in clay before section headings
+   ───────────────────────────────────────── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────
+   ANIMATIONS — intentional, not rampant
+   Only 3 use cases:
+   1. Hero entrance (once, on load)
+   2. Hover state on interactive elements
+   3. State-change transitions (nav active, etc.)
+   ───────────────────────────────────────── */
+
+/* Hero entrance — runs once */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-animate {
+  animation: hero-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Stagger delays for hero children only */
+.hero-animate:nth-child(1) { animation-delay: 0ms; }
+.hero-animate:nth-child(2) { animation-delay: 80ms; }
+.hero-animate:nth-child(3) { animation-delay: 160ms; }
+.hero-animate:nth-child(4) { animation-delay: 240ms; }
+.hero-animate:nth-child(5) { animation-delay: 320ms; }
+
+/* Skill / tag pill */
+.skill-tag {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  transition: border-color var(--transition-fast),
+              color var(--transition-fast);
+}
+
+.skill-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Nav link underline — state-based only */
+.nav-link {
+  position: relative;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width var(--transition-normal);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ─────────────────────────────────────────
+   DIVIDER
+   ───────────────────────────────────────── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--bg-border);
+  margin: 4rem 0;
+}
+
+/* ─────────────────────────────────────────
+   PROJECT CARD ACCENT BAR
+   ───────────────────────────────────────── */
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width var(--transition-slow);
+}
+
+.project-card:hover::before {
+  width: 100%;
 }
