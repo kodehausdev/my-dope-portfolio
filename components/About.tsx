@@ -11,8 +11,8 @@ const highlights = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
       </svg>
     ),
-    title: 'Problem Solver',
-    description: "I don't just write code — I architect solutions. Like encoding images as strings to bypass Firebase storage limits in MealFlow.",
+    title: 'Systems Architect',
+    description: "I build for bottlenecks—like engineering queue-based batching systems with exponential backoff to handle strict fintech API rate limits without dropping a single payload.",
   },
   {
     icon: (
@@ -20,8 +20,8 @@ const highlights = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
-    title: 'Fast Learner',
-    description: 'From Python basics in 2020 to building full-stack production apps in 2025. Self-taught through documentation and real projects.',
+    title: 'Adaptive Learner',
+    description: 'Self-taught from Python basics to deploying full-stack, AI-integrated production applications by prioritizing real-world building over tutorial hell.',
   },
   {
     icon: (
@@ -29,16 +29,16 @@ const highlights = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
       </svg>
     ),
-    title: 'Full Stack',
-    description: 'Comfortable across the entire stack — from Android UI in Jetpack Compose to backend APIs with Node.js and PostgreSQL.',
+    title: 'End-to-End Dev',
+    description: 'Fluid across the entire stack—from reactive mobile UIs in Jetpack Compose to robust Node.js and PostgreSQL backends.',
   },
 ];
 
 const stats = [
   { value: '10+', label: 'Projects Built' },
   { value: '5',   label: 'Years Coding'  },
-  { value: '4',   label: 'Languages'     },
-  { value: '∞',   label: 'Coffee'        },
+  { value: '4',   label: 'Core Languages'     },
+  { value: '3+',  label: 'AI Models Mastered' }, 
 ];
 
 // One fade-up on section enter, staggered children
@@ -88,16 +88,17 @@ export default function About() {
             fontSize: 'clamp(2rem, 5vw, 3.5rem)',
             letterSpacing: '-0.02em',
             color: 'var(--text-primary)',
+            lineHeight: 1.1,
           }}
         >
-          Self-taught developer<br />
-          <span style={{ color: 'var(--accent)' }}>who turns ideas into reality.</span>
+          Bridging the gap between<br />
+          <span style={{ color: 'var(--accent)' }}>complex systems and seamless experiences.</span>
         </motion.h2>
 
         {/* Main grid: avatar + story */}
         <div className="grid md:grid-cols-2 gap-12 mb-16 items-start">
 
-          {/* Avatar block — clean, no spinning */}
+          {/* Avatar block */}
           <motion.div variants={row} className="flex flex-col items-center md:items-start gap-6">
             <div
               className="w-48 h-48 rounded-2xl flex items-center justify-center relative overflow-hidden"
@@ -138,18 +139,18 @@ export default function About() {
               </div>
             </div>
 
-            {/* Highlights — compact, no hover scale */}
+            {/* Highlights */}
             <div className="w-full space-y-3">
               {highlights.map((h) => (
                 <div
                   key={h.title}
-                  className="flex items-start gap-3 p-4 rounded-lg"
+                  className="group flex items-start gap-3 p-4 rounded-lg transition-colors duration-300"
                   style={{
                     background: 'var(--bg-surface)',
                     border: '1px solid var(--bg-border)',
                   }}
                 >
-                  <div style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '2px' }}>
+                  <div className="transition-transform duration-300 group-hover:scale-110" style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '2px' }}>
                     {h.icon}
                   </div>
                   <div>
@@ -182,43 +183,35 @@ export default function About() {
             </h3>
 
             <div
-              className="space-y-4"
+              className="space-y-5"
               style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.8 }}
             >
               <p>
-                Started with{' '}
-                <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-                  Python basics in 2020
-                </span>{' '}
-                during university. What began as curiosity turned into a passion for building
-                things that solve real problems.
+                My path into software wasn't traditional. I discovered a fascination with systems and logic that led me to write my first line of Python in 2020. What started as curiosity quickly evolved into an obsession with building.
               </p>
               <p>
-                While studying Political Science, I taught myself to code by{' '}
+                I bypassed "tutorial hell" by diving straight into the deep end. By focusing on{' '}
                 <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-                  building projects, not following tutorials.
+                  building real-world applications
                 </span>{' '}
-                From my first Android app to full-stack web applications — each project
-                taught me something new.
+                rather than just following guides, I learned how to architect software that survives contact with actual users.
               </p>
               <p>
-                Today I architect{' '}
-                <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-                  scalable production applications
-                </span>{' '}
-                using Kotlin, React, Node.js, and modern tooling. I've shipped{' '}
-                <span style={{ color: 'var(--accent)', fontWeight: 500 }}>10+ projects</span>,
-                including an Android meal planner with an innovative Firebase workaround and
-                an AI-powered proposal generator.
+                Today, I bridge the gap between complex logic and scalable code. Leveraging my background in{' '}
+                <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Political Science</span>, 
+                I bring a unique perspective to{' '}
+                <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>AI Multi-Agent Systems</span>—treating 
+                AI coordination like organizational diplomacy. I’ve shipped <span style={{ color: 'var(--accent)', fontWeight: 500 }}>10+ projects</span>, 
+                from AI-powered proposal generators to high-performance Next.js applications.
               </p>
-              <p style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-                I don't just write code — I build solutions that work.
+                <p style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '1.05rem', marginTop: '2rem' }}>
+                Code is the baseline. Architecture is the craft. I design systems that bend constraints instead of breaking under them.
               </p>
             </div>
           </motion.div>
         </div>
 
-        {/* Stats row — clean divider style */}
+        {/* Stats row */}
         <motion.div
           variants={row}
           className="grid grid-cols-2 md:grid-cols-4 gap-px"
@@ -251,6 +244,7 @@ export default function About() {
                   color: 'var(--text-ghost)',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
+                  textAlign: 'center',
                 }}
               >
                 {s.label}

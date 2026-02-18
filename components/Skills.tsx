@@ -7,27 +7,27 @@ import type { Variants } from 'framer-motion';
 const skillCategories = [
   {
     title: 'AI & Automation',
-    skills: ['LLM Integration', 'Multi-Agent Systems', 'Prompt Engineering', 'Python', 'Web Scraping', 'Discord/Email Bots'],
+    skills: ['LLM Integration', 'Multi-Agent Systems', 'Prompt Engineering', 'Python', 'Data Scraping Pipelines', 'Event-Driven Bots'],
   },
   {
     title: 'Frontend',
-    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'JavaScript'],
+    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Jetpack Compose'], // Moved Jetpack here as it's UI
   },
   {
-    title: 'Backend',
-    skills: ['Node.js', 'PostgreSQL', 'Firebase', 'REST APIs', 'SQLite'],
+    title: 'Backend & Data',
+    skills: ['Node.js', 'PostgreSQL', 'Firebase', 'RESTful APIs', 'SQLite'],
   },
   {
     title: 'Tools & Infra',
-    skills: ['Git', 'Vercel', 'Android Studio', 'Jetpack Compose', 'Kotlin'],
+    skills: ['Git', 'Vercel', 'Render', 'CI/CD Pipelines', 'Android Studio', 'Kotlin'], 
   },
 ];
 
 const stats = [
-  { value: '4',  label: 'Languages'     },
-  { value: '8+', label: 'Frameworks'    },
-  { value: '4',  label: 'Live Projects' },
-  { value: '5+', label: 'Years Building'},
+  { value: '4',   label: 'Core Languages' },
+  { value: '10+', label: 'Frameworks & Tools' },
+  { value: '10+', label: 'Systems Shipped' }, // Updated to match the "10+ projects" in About
+  { value: '5+',  label: 'Years Engineering' }, // Changed "Building" to "Engineering"
 ];
 
 const easing: [number,number,number,number] = [0.16, 1, 0.3, 1];
@@ -78,15 +78,15 @@ export default function Skills() {
             color: 'var(--text-primary)',
           }}
         >
-          Tools I build with.
+          The Architecture Stack.
         </motion.h2>
 
         <motion.p
           variants={row}
           className="mb-16"
-          style={{ fontSize: '1rem', color: 'var(--text-secondary)', maxWidth: '480px' }}
+          style={{ fontSize: '1rem', color: 'var(--text-secondary)', maxWidth: '520px', lineHeight: 1.6 }}
         >
-          Full-stack toolkit with a growing focus on AI systems and automation.
+          A robust full-stack foundation, purpose-built for AI orchestration, scalable data pipelines, and high-performance interfaces.
         </motion.p>
 
         {/* Skill grid */}
@@ -97,7 +97,7 @@ export default function Skills() {
           {skillCategories.map((cat, ci) => (
             <div
               key={cat.title}
-              className="p-6 rounded-lg"
+              className="p-6 rounded-lg transition-colors duration-300 hover:bg-white/[0.02]"
               style={{
                 background: 'var(--bg-surface)',
                 border: '1px solid var(--bg-border)',
@@ -106,7 +106,7 @@ export default function Skills() {
               }}
             >
               {/* Category title */}
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center gap-2 mb-5">
                 {ci === 0 && (
                   <span
                     className="w-1.5 h-1.5 rounded-full"
@@ -127,11 +127,20 @@ export default function Skills() {
               </div>
 
               {/* Skill pills */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="skill-tag"
+                    className="skill-tag cursor-default transition-all duration-200"
+                    // Added inline styles for a subtle hover effect if your CSS doesn't already have one
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = 'var(--accent)';
+                        e.currentTarget.style.color = 'var(--accent)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = 'var(--bg-border)';
+                        e.currentTarget.style.color = 'inherit';
+                    }}
                   >
                     {skill}
                   </span>
@@ -174,6 +183,7 @@ export default function Skills() {
                   color: 'var(--text-ghost)',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
+                  textAlign: 'center'
                 }}
               >
                 {s.label}

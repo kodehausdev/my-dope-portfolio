@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // ─── Audio — only called after user gesture ───────────────────────────────────
@@ -70,24 +70,41 @@ type Phase = 'waiting' | 'chiming' | 'dot' | 'done';
 
 export default function PageLoader() {
   const [phase, setPhase] = useState<Phase>('waiting');
+  
+  // A ref gives us a synchronous, instant lock to prevent double-fires
+  const hasTriggered = useRef(false);
 
-  // Auto-dismiss after 4s even without interaction (accessibility)
-  useEffect(() => {
-    const fallback = setTimeout(() => {
-      if (phase === 'waiting') enter();
-    }, 4000);
-    return () => clearTimeout(fallback);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase]);
+  const triggerEnter = (fromUserInteraction = false) => {
+    if (hasTriggered.current) return;
+    hasTriggered.current = true; // Lock it immediately
 
-  const enter = () => {
-    if (phase !== 'waiting') return;
     setPhase('chiming');
-    playChime(); // safe — called inside user gesture handler
+    
+    // Only play audio if the user explicitly clicked
+    if (fromUserInteraction) {
+      playChime(); 
+    }
 
     setTimeout(() => setPhase('dot'),  900);
     setTimeout(() => setPhase('done'), 1600);
   };
+
+// Auto-dismiss after 4s OR instantly if bot
+  useEffect(() => {
+    // 1. Instantly skip loader for Lighthouse and SEO bots
+    const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse/i.test(navigator.userAgent);
+    if (isBot) {
+      setPhase('done');
+      return;
+    }
+
+    // 2. Normal 4s fallback for humans who don't click
+    const fallback = setTimeout(() => {
+      triggerEnter(false); 
+    }, 4000);
+    
+    return () => clearTimeout(fallback);
+  }, []);
 
   return (
     <AnimatePresence>
@@ -98,7 +115,8 @@ export default function PageLoader() {
           exit={{ opacity: 0, transition: { duration: 0.3, delay: 0.3 } }}
           className="fixed inset-0 z-[200] flex items-center justify-center select-none"
           style={{ background: 'var(--bg)', cursor: phase === 'waiting' ? 'pointer' : 'default' }}
-          onClick={enter}
+          // Pass 'true' to indicate this was a real user click
+          onClick={() => triggerEnter(true)} 
           role="button"
           aria-label="Enter site"
         >

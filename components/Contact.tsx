@@ -17,14 +17,14 @@ const row: Variants = {
 
 const inputBase: React.CSSProperties = {
   width: '100%',
-  padding: '0.7rem 1rem',
+  padding: '0.8rem 1rem',
   background: 'var(--bg-surface)',
   border: '1px solid var(--bg-border)',
-  borderRadius: '6px',
+  borderRadius: '8px',
   color: 'var(--text-primary)',
   fontSize: '0.9rem',
   outline: 'none',
-  transition: 'border-color 150ms ease',
+  transition: 'all 200ms ease',
 };
 
 const labelBase: React.CSSProperties = {
@@ -57,7 +57,7 @@ export default function Contact() {
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          subject: `New message from ${formData.name} - Portfolio Contact`,
+          subject: `New System Inquiry from ${formData.name}`,
         }),
       });
       const result = await response.json();
@@ -111,7 +111,7 @@ export default function Contact() {
   const socials = [
     {
       name: 'GitHub',
-      sub: 'See my work',
+      sub: 'Review the code',
       href: 'https://github.com/kodehausdev',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -121,7 +121,7 @@ export default function Contact() {
     },
     {
       name: 'LinkedIn',
-      sub: 'Let\'s connect',
+      sub: 'Professional network',
       href: 'https://www.linkedin.com/in/seyi-fatoki-a180a3389/',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -167,7 +167,7 @@ export default function Contact() {
             color: 'var(--text-primary)',
           }}
         >
-          Let's work together.
+          Let's architect your next system.
         </motion.h2>
 
         <motion.p
@@ -176,10 +176,11 @@ export default function Contact() {
           style={{
             fontSize: '1rem',
             color: 'var(--text-secondary)',
-            maxWidth: '480px',
+            maxWidth: '520px',
+            lineHeight: 1.6,
           }}
         >
-          Have a project in mind or want to collaborate? Drop me a message — I read everything.
+          Whether you need a complex multi-agent AI system, a scalable data pipeline, or just want to talk software architecture — my inbox is open.
         </motion.p>
 
         <div className="grid md:grid-cols-5 gap-12">
@@ -201,6 +202,7 @@ export default function Contact() {
                 style={{
                   ...inputBase,
                   borderColor: focused === 'name' ? 'var(--accent)' : 'var(--bg-border)',
+                  boxShadow: focused === 'name' ? '0 0 0 1px var(--accent)' : 'none',
                 }}
               />
             </div>
@@ -219,6 +221,7 @@ export default function Contact() {
                 style={{
                   ...inputBase,
                   borderColor: focused === 'email' ? 'var(--accent)' : 'var(--bg-border)',
+                  boxShadow: focused === 'email' ? '0 0 0 1px var(--accent)' : 'none',
                 }}
               />
             </div>
@@ -233,10 +236,11 @@ export default function Contact() {
                 onFocus={() => setFocused('message')}
                 onBlur={() => setFocused(null)}
                 rows={6}
-                placeholder="Tell me about your project..."
+                placeholder="Describe your system requirements or project idea..."
                 style={{
                   ...inputBase,
                   borderColor: focused === 'message' ? 'var(--accent)' : 'var(--bg-border)',
+                  boxShadow: focused === 'message' ? '0 0 0 1px var(--accent)' : 'none',
                   resize: 'none',
                 }}
               />
@@ -250,11 +254,12 @@ export default function Contact() {
               style={{
                 opacity: status === 'sending' ? 0.6 : 1,
                 cursor: status === 'sending' ? 'not-allowed' : 'pointer',
+                padding: '0.85rem',
               }}
             >
-              {status === 'sending' ? 'Sending…' :
-               status === 'success' ? '✓ Message sent' :
-               status === 'error'   ? 'Error — try again' :
+              {status === 'sending' ? 'Transmitting...' :
+               status === 'success' ? '✓ Transmission successful' :
+               status === 'error'   ? 'Error — Reroute and try again' :
                'Send Message'}
             </button>
 
@@ -272,7 +277,7 @@ export default function Contact() {
                   borderRadius: '6px',
                 }}
               >
-                Message sent — I'll get back to you within 24 hours.
+                Message received. I'll get back to you within 24 hours.
               </motion.p>
             )}
             {status === 'error' && (
@@ -288,7 +293,7 @@ export default function Contact() {
                   borderRadius: '6px',
                 }}
               >
-                Something went wrong. Email me directly at hi.kodehaus@gmail.com
+                System error. Please email me directly at hi.kodehaus@gmail.com
               </motion.p>
             )}
           </motion.div>
@@ -408,7 +413,7 @@ export default function Contact() {
           style={{ borderTop: '1px solid var(--bg-border)' }}
         >
           <p style={{ fontSize: '0.8rem', color: 'var(--text-ghost)' }}>
-            © 2025 Seyi Fatoki. All rights reserved.
+            © 2026 Seyi Fatoki. All rights reserved.
           </p>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-ghost)' }}>
             Built with Next.js, TypeScript, and Tailwind CSS

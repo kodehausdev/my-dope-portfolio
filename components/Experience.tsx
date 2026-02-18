@@ -7,62 +7,45 @@ import type { Variants } from 'framer-motion';
 const experiences = [
   {
     period: '2022 — Present',
-    title: 'Freelance & Personal Projects Developer',
+    title: 'Independent Systems Engineer',
     company: 'Remote',
     type: 'Freelance',
     achievements: [
-      'Architected scalable, production-ready solutions optimized for real-world constraints',
-      'Developed MealFlow with innovative zero-cost Firebase storage solution',
-      'Built OptiPropose AI-powered SaaS platform with TypeScript and PostgreSQL',
-      'Created HustleHawk job automation tool with intelligent filtering',
+      'Architected and deployed end-to-end production systems, managing database design, API integrations, and CI/CD pipelines',
+      'Engineered OptiPropose, a complex multi-agent AI SaaS platform utilizing parallel processing for competitive analysis',
+      'Developed autonomous data-pipelines and email automation workflows backed by PostgreSQL',
+      'Devised strict constraint-optimization solutions, including zero-cost database routing for Android applications',
     ],
   },
   {
     period: 'Jun 2023 — Nov 2023',
-    title: 'Business Development & Social Media Lead',
+    title: 'Digital Strategy & Growth Lead',
     company: 'Animation Studio, Abuja',
     type: 'Contract',
     achievements: [
-      'Earned Meta Social Media Marketing certification',
-      'Developed content strategies that significantly increased engagement',
-      'Managed multi-platform digital campaigns',
-      'Increased brand reach and audience interaction',
-    ],
-  },
-  {
-    period: '2020 — Present',
-    title: 'Self-Taught Developer Journey',
-    company: 'Independent Learning',
-    type: 'Education',
-    achievements: [
-      'Mastered Python, Kotlin, JavaScript, and TypeScript through project-based learning',
-      'Built 10+ complete projects from scratch to production deployment',
-      'Transitioned from tutorials to architecting production applications',
-      'Self-taught through documentation, open-source contributions, and real projects',
+      'Orchestrated data-driven, multi-platform digital campaigns to scale brand reach',
+      'Engineered content and engagement strategies that significantly increased organic interaction',
+      'Translated complex brand objectives into measurable, high-conversion growth systems',
     ],
   },
   {
     period: 'Aug 2020 — Dec 2020',
-    title: 'Volunteer Digital Literacy Educator',
+    title: 'Technical Facilitator',
     company: 'Rural Nigeria',
     type: 'Volunteer',
     achievements: [
-      'Created comprehensive digital literacy curriculum',
-      'Used Google Classroom for remote teaching',
-      'Empowered communities with essential tech skills',
-      'Bridged the digital divide in rural areas',
+      'Architected a scalable digital literacy curriculum tailored for low-bandwidth environments',
+      'Leveraged cloud-based education tools to deploy technical resources across remote communities',
     ],
   },
   {
     period: '2016 — 2021',
-    title: 'Bachelor of Science in Political Science',
+    title: 'B.Sc. Political Science',
     company: 'University of Abuja',
     type: 'Education',
     achievements: [
-      'Completed degree while learning to code',
-      'Built first Android apps during university',
-      'Developed problem-solving and analytical skills',
-      'Balanced academics with technical education',
+      'Developed rigorous analytical frameworks for evaluating complex organizational structures',
+      'Applied high-level systems-thinking to geopolitical and socioeconomic data',
     ],
   },
 ];
@@ -131,7 +114,7 @@ export default function Experience() {
           className="mb-16"
           style={{ fontSize: '1rem', color: 'var(--text-secondary)', maxWidth: '480px' }}
         >
-          From self-taught developer to building production applications.
+          A timeline of building, scaling, and architecting solutions.
         </motion.p>
 
         {/* Timeline */}
@@ -159,7 +142,7 @@ export default function Experience() {
 
                   {/* Card */}
                   <div
-                    className="p-6 rounded-lg project-card"
+                    className="p-6 rounded-lg project-card transition-colors duration-300 hover:bg-white/[0.02]"
                     style={{
                       background: 'var(--bg-surface)',
                       border: '1px solid var(--bg-border)',
@@ -192,7 +175,7 @@ export default function Experience() {
 
                     {/* Title */}
                     <h3
-                      className="font-serif mb-1"
+                      className="font-serif mb-1 group-hover:text-[var(--accent)] transition-colors duration-300"
                       style={{
                         fontSize: '1.25rem',
                         color: 'var(--text-primary)',
@@ -204,7 +187,7 @@ export default function Experience() {
 
                     {/* Company */}
                     <p
-                      className="mb-4"
+                      className="mb-4 font-medium"
                       style={{ fontSize: '0.85rem', color: 'var(--accent)' }}
                     >
                       {exp.company}
@@ -215,11 +198,11 @@ export default function Experience() {
                       {exp.achievements.map((a, ai) => (
                         <li
                           key={ai}
-                          className="flex items-start gap-2"
-                          style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}
+                          className="flex items-start gap-2.5"
+                          style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}
                         >
                           <span
-                            className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0"
+                            className="mt-2 w-1 h-1 rounded-full flex-shrink-0"
                             style={{ background: 'var(--accent)', minWidth: '4px' }}
                           />
                           {a}
@@ -236,7 +219,7 @@ export default function Experience() {
         {/* Resume CTA */}
         <motion.div variants={row} className="mt-4 pt-8" style={{ borderTop: '1px solid var(--bg-border)' }}>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.25rem' }}>
-            Want to see my full resume?
+            Want to see the full technical breakdown?
           </p>
           <a
             href="/Seyi_Fatoki_Resume.pdf"
