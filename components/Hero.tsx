@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 
 // 🔥 The Magic: Defer heavy client components and disable SSR
 const Terminal = dynamic(() => import('./Terminal'), { ssr: false });
-const AtmosphereCanvas = dynamic(() => import('./atmosphereCanvas'), { ssr: false });
+const AtmosphereCanvas = dynamic(() => import('./AtmosphereCanvas'), { ssr: false });
 
 // ─── Animation variants ───────────────────────────────────────────────────────
 const easing: [number, number, number, number] = [0.16, 1, 0.3, 1];
