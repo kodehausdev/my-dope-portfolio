@@ -18,6 +18,9 @@ const dmSerifDisplay = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
+  // 🔥 ADD THIS: Required by Next.js for resolving absolute image URLs
+  metadataBase: new URL("https://seyi.dev"), // Replace with your actual live domain!
+  
   title: "Seyi Fatoki — AI Systems & Full-Stack Developer",
   description:
     "Self-taught developer building AI-powered systems and automation tools. Creator of OptiPropose — a multi-agent proposal platform — and HustleHawk, an intelligent job scraper. React, Node.js, Python, and LLM integration.",
@@ -44,18 +47,29 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://seyi.dev",
+    url: "https://seyi.dev", // Replace with actual domain
     title: "Seyi Fatoki — AI Systems & Full-Stack Developer",
     description:
       "Building AI-powered systems that go beyond wrappers. Multi-agent automation, intelligent tooling, and production-grade full-stack apps.",
     siteName: "Seyi Fatoki",
+    // 🔥 ADD THIS: The image that shows up on LinkedIn/Discord
+    images: [
+      {
+        url: "/og-image.png", // Just drop a 1200x630 screenshot of your hero in the public folder
+        width: 1200,
+        height: 630,
+        alt: "Seyi Fatoki Portfolio Preview",
+      },
+    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary_large_image", // This tells Twitter to make the image massive
     title: "Seyi Fatoki — AI Systems & Full-Stack Developer",
     description:
       "Building AI-powered systems that go beyond wrappers. Multi-agent automation, intelligent tooling, and production-grade full-stack apps.",
     creator: "@seyifatoki",
+    // 🔥 ADD THIS:
+    images: ["/og-image.png"], 
   },
   robots: {
     index: true,
