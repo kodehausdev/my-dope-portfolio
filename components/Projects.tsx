@@ -1,15 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 
+// ... (Keep your existing projects array and statusMeta object here) ...
 const projects = [
   {
     id: 'optipropose',
     title: 'OptiPropose',
     status: 'In Development',
-    description: 'AI-powered SaaS proposal generator built for win-rate optimization. Moving beyond simple input→output — engineering specialized agents that handle research, competitive analysis, and copy in parallel.',
+    description: 'Moving beyond simple LLM wrappers. OptiPropose utilizes a multi-agent architecture where specialized AI models autonomously orchestrate research, competitive analysis, and copy generation in parallel to optimize proposal win-rates.',
     tech: ['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'Firebase'],
     images: ['/projects/optipropose-1.png', '/projects/optipropose-2.png'],
     links: { demo: 'https://optipropose.com', github: '' },
@@ -18,16 +20,25 @@ const projects = [
     id: 'hustlehawk',
     title: 'HustleHawk',
     status: 'Live',
-    description: 'Automated job scraper that monitors Remotive, RemoteOK, and Arbeitnow continuously, filters by skill level, and pushes quality matches to Discord. Built to run itself.',
-    tech: ['Python', 'Beautiful Soup', 'SQLite', 'Discord API'],
+    description: 'An autonomous job-aggregation pipeline and public Discord service hosted on Render. The backend features a 1-click scraping engine that pushes to GitHub to trigger automated CI/CD deployments, broadcasting high-signal remote opportunities directly to users.',
+    tech: ['Python', 'Beautiful Soup', 'Discord API', 'Render', 'CI/CD'],
     images: ['/projects/hustlehawk-1.png', '/projects/hustlehawk-2.png'],
     links: { demo: '', github: 'https://github.com/kodehausdev' },
+  },
+  {
+    id: 'outreach-engine', 
+    title: 'Outreach Engine', 
+    status: 'Live',
+    description: 'A full-cycle lead generation and email automation system. It autonomously scrapes contact data, dynamically segments users into distinct categories, and orchestrates targeted email sequences backed entirely by a robust PostgreSQL database.',
+    tech: ['Node.js', 'PostgreSQL', 'Web Scraping', 'Automation'],
+    images: ['/projects/email-1.png', '/projects/email-2.png'], 
+    links: { demo: '', github: 'https://github.com/kodehausdev' }, 
   },
   {
     id: 'mealflow',
     title: 'MealFlow',
     status: 'Live',
-    description: 'Full-featured Android meal planning app with Firebase backend and Jetpack Compose UI. Engineered a zero-cost storage solution by encoding images as base64 strings — bypassing Firebase storage limits entirely.',
+    description: 'A full-featured Android application highlighting constraint-driven engineering. I architected a zero-cost storage solution by encoding user images as base64 strings, completely bypassing strict Firebase storage limits.',
     tech: ['Kotlin', 'Jetpack Compose', 'Firebase', 'Room Database'],
     images: [
       '/projects/mealflow-1.png',
@@ -42,18 +53,28 @@ const projects = [
     id: 'two-truths',
     title: 'Two Truths and a Lie',
     status: 'Live',
-    description: 'Interactive social game with shareable compressed URLs. Built with React, deployed on Vercel. Clean animations, real-time gameplay.',
+    description: 'An interactive, real-time social game with shareable compressed URLs. Built to prioritize clean, fluid animations and low-latency state management.',
     tech: ['React', 'Tailwind CSS', 'Vercel', 'Framer Motion'],
     images: ['/projects/two-truths-1.png', '/projects/two-truths-2.png'],
     links: { demo: 'https://two-truth-and-a-lie-efrd.vercel.app', github: '' },
   },
+  {
+    id: 'fintech-queue',
+    title: 'Enterprise Payment Infrastructure',
+    status: 'Private Client',
+    description: 'A white-label integration for a remote fintech team. Architected a resilient queue-based batching system with exponential backoff to handle strict payment gateway rate limits. Prevented payload drops and delivered a 4x boost in processing efficiency during peak traffic.',
+    tech: ['Node.js', 'Redis', 'TypeScript', 'Payment APIs'], 
+    images: ['/projects/fintech-architecture.png'], 
+    links: { demo: '', github: '' },
+  },
 ];
+
 
 const statusMeta: Record<string, { bg: string; color: string; dot: string }> = {
   'Live':           { bg: 'rgba(109,184,122,0.1)',  color: '#6db87a', dot: '#6db87a' },
   'In Development': { bg: 'rgba(196,120,90,0.1)',   color: 'var(--accent)', dot: 'var(--accent)' },
+  'Private Client':   { bg: 'rgba(148,163,184,0.1)',  color: '#94a3b8', dot: '#94a3b8' }, // Stealthy Slate
 };
-
 const easing: [number,number,number,number] = [0.16, 1, 0.3, 1];
 const section: Variants = {
   hidden: {},
@@ -65,7 +86,8 @@ const row: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: easing } },
 };
 
-function ImageCarousel({ images, title }: { images: string[]; title: string }) {
+// Added priority prop for LCP optimization
+function ImageCarousel({ images, title, priority = false }: { images: string[]; title: string; priority?: boolean }) {
   const [idx, setIdx] = useState(0);
 
   const prev = () => setIdx((i) => (i - 1 + images.length) % images.length);
@@ -73,7 +95,7 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
 
   return (
     <div
-      className="relative w-full overflow-hidden"
+      className="relative w-full overflow-hidden group/carousel"
       style={{
         height: '220px',
         background: 'var(--bg)',
@@ -81,25 +103,34 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
       }}
     >
       <AnimatePresence mode="wait">
-        <motion.img
+        <motion.div
           key={idx}
-          src={images[idx]}
-          alt={`${title} screenshot ${idx + 1}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
-          className="w-full h-full object-contain"
-        />
+          className="absolute inset-0 w-full h-full"
+        >
+          <Image
+            src={images[idx]}
+            alt={`${title} screenshot ${idx + 1}`}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            // Only priority-load the very first image of the priority carousel
+            priority={priority && idx === 0} 
+          />
+        </motion.div>
       </AnimatePresence>
 
       {images.length > 1 && (
         <>
-          {/* Prev / Next */}
+          {/* Prev / Next Buttons */}
           <button
             onClick={prev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-md opacity-0 group-hover/carousel:opacity-100 transition-opacity z-10"
             style={{ background: 'rgba(14,14,12,0.7)', color: 'var(--text-secondary)' }}
+            aria-label="Previous image"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/>
@@ -107,8 +138,9 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
           </button>
           <button
             onClick={next}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-md opacity-0 group-hover/carousel:opacity-100 transition-opacity z-10"
             style={{ background: 'rgba(14,14,12,0.7)', color: 'var(--text-secondary)' }}
+            aria-label="Next image"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
@@ -116,11 +148,12 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
           </button>
 
           {/* Dot indicators */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
             {images.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setIdx(i)}
+                aria-label={`Go to image ${i + 1}`}
                 style={{
                   width: i === idx ? '1.25rem' : '0.375rem',
                   height: '0.375rem',
@@ -185,32 +218,37 @@ export default function Projects() {
           className="mb-16"
           style={{ fontSize: '1rem', color: 'var(--text-secondary)', maxWidth: '480px' }}
         >
-          Real solutions, shipped. From AI agents to automation tools.
+          Real solutions, shipped. From autonomous AI agents to scalable mobile applications.
         </motion.p>
 
         {/* Project grid */}
         <motion.div
           variants={row}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
         >
-          {projects.map((project) => {
+          {projects.map((project, index) => {
             const badge = statusMeta[project.status];
             return (
               <div
                 key={project.id}
-                className="group flex flex-col rounded-lg overflow-hidden project-card"
+                className="group flex flex-col rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
                 style={{
                   background: 'var(--bg-surface)',
                   border: '1px solid var(--bg-border)',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
                 }}
               >
-                {/* Image carousel */}
-                <ImageCarousel images={project.images} title={project.title} />
+                {/* Image carousel - Passing priority to the first item */}
+                <ImageCarousel 
+                  images={project.images} 
+                  title={project.title} 
+                  priority={index === 0} 
+                />
 
                 {/* Content */}
                 <div className="p-6 flex flex-col flex-grow">
                   {/* Status + counter */}
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center justify-between mb-4">
                     <span
                       className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-0.5 rounded"
                       style={{ background: badge.bg, color: badge.color }}
@@ -225,9 +263,9 @@ export default function Projects() {
 
                   {/* Title */}
                   <h3
-                    className="font-serif mb-3"
+                    className="font-serif mb-3 group-hover:text-[var(--accent)] transition-colors duration-300"
                     style={{
-                      fontSize: '1.35rem',
+                      fontSize: '1.4rem',
                       color: 'var(--text-primary)',
                       letterSpacing: '-0.01em',
                     }}
@@ -237,32 +275,42 @@ export default function Projects() {
 
                   {/* Description */}
                   <p
-                    className="mb-5 flex-grow"
+                    className="mb-6 flex-grow"
                     style={{
-                      fontSize: '0.875rem',
+                      fontSize: '0.9rem',
                       color: 'var(--text-secondary)',
-                      lineHeight: 1.75,
+                      lineHeight: 1.7,
                     }}
                   >
                     {project.description}
                   </p>
 
                   {/* Tech tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {project.tech.map((t) => (
-                      <span key={t} className="skill-tag">{t}</span>
+                      <span 
+                        key={t} 
+                        className="text-xs font-medium px-2.5 py-1 rounded-md"
+                        style={{
+                          background: 'rgba(255,255,255,0.03)',
+                          border: '1px solid rgba(255,255,255,0.05)',
+                          color: 'var(--text-ghost)'
+                        }}
+                      >
+                        {t}
+                      </span>
                     ))}
                   </div>
 
                   {/* Links */}
-                  <div className="flex gap-2 mt-auto">
+                  <div className="flex gap-3 mt-auto pt-2">
                     {project.links.demo && (
                       <a
                         href={project.links.demo}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn-primary"
-                        style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}
+                        style={{ fontSize: '0.8rem', padding: '0.5rem 1.25rem' }}
                       >
                         View Live
                       </a>
@@ -273,7 +321,7 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn-outline flex items-center gap-1.5"
-                        style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}
+                        style={{ fontSize: '0.8rem', padding: '0.5rem 1.25rem' }}
                       >
                         <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -291,19 +339,20 @@ export default function Projects() {
         {/* More coming soon */}
         <motion.div
           variants={row}
-          className="rounded-lg p-10 text-center"
+          className="rounded-xl p-10 text-center"
           style={{
             border: '1px dashed var(--bg-border)',
+            background: 'rgba(255,255,255,0.01)'
           }}
         >
           <p
             className="font-serif mb-1"
-            style={{ fontSize: '1.1rem', color: 'var(--text-primary)', letterSpacing: '-0.01em' }}
+            style={{ fontSize: '1.2rem', color: 'var(--text-primary)', letterSpacing: '-0.01em' }}
           >
-            More coming soon
+            More in the pipeline
           </p>
-          <p style={{ fontSize: '0.85rem', color: 'var(--text-ghost)' }}>
-            Currently building. Stay tuned.
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-ghost)' }}>
+            Currently architecting the next system in stealth. Stay tuned.
           </p>
         </motion.div>
       </motion.div>
