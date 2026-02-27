@@ -4,58 +4,47 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 
-const experiences = [
+const capabilities = [
   {
-    period: '2022 — Present',
-    title: 'Independent Systems Engineer',
-    company: 'Remote',
-    type: 'Freelance',
-    achievements: [
-      'Architected and deployed end-to-end production systems, managing database design, API integrations, and CI/CD pipelines',
-      'Engineered OptiPropose, a complex multi-agent AI SaaS platform utilizing parallel processing for competitive analysis',
-      'Developed autonomous data-pipelines and email automation workflows backed by PostgreSQL',
-      'Devised strict constraint-optimization solutions, including zero-cost database routing for Android applications',
+    step: 'Layer 01',
+    title: 'Custom Web Apps & Client Portals',
+    tech: 'Next.js • React • Tailwind CSS',
+    category: 'Frontend & UI',
+    details: [
+      'Architect highly scalable, interactive frontends using modern Next.js 15 frameworks.',
+      'Implement secure role-based authentication and multi-tenant database access.',
+      'Deliver pixel-perfect, white-labeled client dashboards that your agency can confidently present as its own.',
     ],
   },
   {
-    period: 'Jun 2023 — Nov 2023',
-    title: 'Digital Strategy & Growth Lead',
-    company: 'Animation Studio, Abuja',
-    type: 'Contract',
-    achievements: [
-      'Orchestrated data-driven, multi-platform digital campaigns to scale brand reach',
-      'Engineered content and engagement strategies that significantly increased organic interaction',
-      'Translated complex brand objectives into measurable, high-conversion growth systems',
+    step: 'Layer 02',
+    title: 'AI Integration & Automation',
+    category: 'AI / Data',
+    tech: 'Python • Gemini/OpenAI • Web Scraping',
+    details: [
+      'Move beyond standard ChatGPT wrappers by engineering custom generative AI pipelines.',
+      'Deploy multi-agent workflows that autonomously handle research, analysis, and copy generation.',
+      'Build robust web scrapers and data aggregation engines to feed high-signal data into your clients\' CRMs.',
     ],
   },
   {
-    period: 'Aug 2020 — Dec 2020',
-    title: 'Technical Facilitator',
-    company: 'Rural Nigeria',
-    type: 'Volunteer',
-    achievements: [
-      'Architected a scalable digital literacy curriculum tailored for low-bandwidth environments',
-      'Leveraged cloud-based education tools to deploy technical resources across remote communities',
-    ],
-  },
-  {
-    period: '2016 — 2021',
-    title: 'B.Sc. Political Science',
-    company: 'University of Abuja',
-    type: 'Education',
-    achievements: [
-      'Developed rigorous analytical frameworks for evaluating complex organizational structures',
-      'Applied high-level systems-thinking to geopolitical and socioeconomic data',
+    step: 'Layer 03',
+    title: 'High-Volume Backend Architecture',
+    category: 'Infrastructure',
+    tech: 'Node.js • PostgreSQL • AWS App Runner',
+    details: [
+      'Design resilient PostgreSQL database schemas optimized for high-read/write enterprise loads.',
+      'Engineer queue-based batching systems with exponential backoff to respect strict third-party API limits.',
+      'Deploy to scalable cloud infrastructure ensuring 99.9% uptime during your clients\' peak traffic events.',
     ],
   },
 ];
 
-// Badge color per type — all muted, no gradients
+// Badge color per category — all muted, no gradients
 const typeMeta: Record<string, { bg: string; color: string }> = {
-  Freelance: { bg: 'rgba(196,120,90,0.12)', color: 'var(--accent)' },
-  Contract:  { bg: 'rgba(196,120,90,0.08)', color: 'var(--accent)' },
-  Education: { bg: 'rgba(91,127,166,0.12)', color: '#7aabcc' },
-  Volunteer: { bg: 'rgba(109,184,122,0.10)', color: '#6db87a' },
+  'Frontend & UI': { bg: 'rgba(91,127,166,0.12)', color: '#7aabcc' },
+  'AI / Data':     { bg: 'rgba(109,184,122,0.10)', color: '#6db87a' },
+  'Infrastructure':{ bg: 'rgba(196,120,90,0.12)', color: 'var(--accent)' },
 };
 
 const easing: [number,number,number,number] = [0.16, 1, 0.3, 1];
@@ -69,10 +58,10 @@ const row: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: easing } },
 };
 
-export default function Experience() {
+export default function Capabilities() {
   return (
     <section
-      id="experience"
+      id="capabilities"
       className="py-28 px-6 relative overflow-hidden"
       style={{ background: 'var(--bg)' }}
     >
@@ -93,7 +82,7 @@ export default function Experience() {
       >
         {/* Section label */}
         <motion.div variants={row} className="section-label mb-3">
-          Experience
+          Capabilities
         </motion.div>
 
         {/* Heading */}
@@ -106,18 +95,18 @@ export default function Experience() {
             color: 'var(--text-primary)',
           }}
         >
-          Journey so far.
+          Full-Stack Execution.
         </motion.h2>
 
         <motion.p
           variants={row}
           className="mb-16"
-          style={{ fontSize: '1rem', color: 'var(--text-secondary)', maxWidth: '480px' }}
+          style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', maxWidth: '520px', lineHeight: 1.6 }}
         >
-          A timeline of building, scaling, and architecting solutions.
+          The technical artillery we provide for your agency's next big pitch. We handle the entire stack so you can focus on strategy and sales.
         </motion.p>
 
-        {/* Timeline */}
+        {/* Timeline (Repurposed as Tech Stack Layers) */}
         <div className="relative">
           {/* Vertical line */}
           <div
@@ -126,8 +115,8 @@ export default function Experience() {
           />
 
           <div className="space-y-0">
-            {experiences.map((exp, i) => {
-              const badge = typeMeta[exp.type] ?? typeMeta['Freelance'];
+            {capabilities.map((cap, i) => {
+              const badge = typeMeta[cap.category] ?? typeMeta['Infrastructure'];
               return (
                 <motion.div
                   key={i}
@@ -159,7 +148,7 @@ export default function Experience() {
                           textTransform: 'uppercase',
                         }}
                       >
-                        {exp.type}
+                        {cap.category}
                       </span>
                       <span
                         style={{
@@ -167,9 +156,10 @@ export default function Experience() {
                           color: 'var(--text-ghost)',
                           fontFamily: 'var(--font-dm-sans), monospace',
                           letterSpacing: '0.04em',
+                          textTransform: 'uppercase',
                         }}
                       >
-                        {exp.period}
+                        {cap.step}
                       </span>
                     </div>
 
@@ -182,22 +172,22 @@ export default function Experience() {
                         letterSpacing: '-0.01em',
                       }}
                     >
-                      {exp.title}
+                      {cap.title}
                     </h3>
 
-                    {/* Company */}
+                    {/* Tech Stack */}
                     <p
                       className="mb-4 font-medium"
                       style={{ fontSize: '0.85rem', color: 'var(--accent)' }}
                     >
-                      {exp.company}
+                      {cap.tech}
                     </p>
 
-                    {/* Achievements */}
+                    {/* Details */}
                     <ul className="space-y-2">
-                      {exp.achievements.map((a, ai) => (
+                      {cap.details.map((detail, di) => (
                         <li
-                          key={ai}
+                          key={di}
                           className="flex items-start gap-2.5"
                           style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}
                         >
@@ -205,7 +195,7 @@ export default function Experience() {
                             className="mt-2 w-1 h-1 rounded-full flex-shrink-0"
                             style={{ background: 'var(--accent)', minWidth: '4px' }}
                           />
-                          {a}
+                          {detail}
                         </li>
                       ))}
                     </ul>
@@ -216,20 +206,19 @@ export default function Experience() {
           </div>
         </div>
 
-        {/* Resume CTA */}
-        <motion.div variants={row} className="mt-4 pt-8" style={{ borderTop: '1px solid var(--bg-border)' }}>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.25rem' }}>
-            Want to see the full technical breakdown?
+        {/* Agency Partnership CTA */}
+        <motion.div variants={row} className="mt-4 pt-8 flex flex-col items-start gap-4" style={{ borderTop: '1px solid var(--bg-border)' }}>
+          <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
+            Have a complex client project in the pipeline? Let's map out the architecture.
           </p>
           <a
-            href="/Seyi_Fatoki_Resume.pdf"
-            download
+            href="mailto:kodehausdev@optipropose.com?subject=White-Label%20Partnership%20Inquiry"
             className="btn-primary inline-flex items-center gap-2"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            Download Full Resume
+            Discuss a Project
           </a>
         </motion.div>
       </motion.div>
