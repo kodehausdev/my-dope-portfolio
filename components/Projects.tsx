@@ -20,7 +20,7 @@ const projects = [
     id: 'client-portal',
     title: 'The White-Label Client Portal',
     status: 'Live',
-    description: "A sleek, dashboard where an agency's client logs in, views their marketing metrics, and downloads invoices",
+    description: "A sleek, dashboard where an agency's client logs in, views their marketing metrics, and downloads invoices.",
     tech: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'Recharts'],
     images: ['/projects/client-portal-1.png', '/projects/client-portal-2.png'],
     links: { demo: '', github: '' },
