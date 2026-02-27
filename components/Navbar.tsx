@@ -8,7 +8,7 @@ const navItems = [
   { name: 'About',      id: 'about'      },
   { name: 'Skills',     id: 'skills'     },
   { name: 'Projects',   id: 'projects'   },
-  { name: 'Experience', id: 'experience' },
+  { name: 'Capabilities', id: 'capabilities' },
   { name: 'Contact',    id: 'contact'    },
 ];
 
@@ -78,7 +78,7 @@ export default function Navbar() {
                 padding: 0,
               }}
             >
-              Seyi<span style={{ color: 'var(--accent)' }}>.F</span>
+              opti<span style={{ color: 'var(--accent)' }}>.propose</span>
             </button>
 
             {/* Desktop nav */}
@@ -114,14 +114,14 @@ export default function Navbar() {
                 </button>
               ))}
 
-              <a
+              {/* <a
                 href="/Seyi_Fatoki_Resume.pdf"
                 download
                 className="btn-primary"
                 style={{ fontSize: '0.8rem', padding: '0.45rem 1rem' }}
               >
                 Resume
-              </a>
+              </a> */}
             </div>
 
             {/* Mobile menu toggle */}

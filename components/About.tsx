@@ -11,8 +11,8 @@ const highlights = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
       </svg>
     ),
-    title: 'Systems Architect',
-    description: "I build for bottlenecks—like engineering queue-based batching systems with exponential backoff to handle strict fintech API rate limits without dropping a single payload.",
+    title: 'High-Volume Architecture',
+    description: "We build for bottlenecks. We engineer queue-based batching systems and scalable infrastructure to handle strict API rate limits and high-traffic events without dropping a single payload.",
   },
   {
     icon: (
@@ -20,8 +20,8 @@ const highlights = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
-    title: 'Adaptive Learner',
-    description: 'Self-taught from Python basics to deploying full-stack, AI-integrated production applications by prioritizing real-world building over tutorial hell.',
+    title: 'Custom AI Automation',
+    description: 'Moving beyond basic ChatGPT wrappers. We architect specialized, multi-agent workflows that autonomously handle your clients\' most complex operational tasks.',
   },
   {
     icon: (
@@ -29,16 +29,16 @@ const highlights = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
       </svg>
     ),
-    title: 'End-to-End Dev',
-    description: 'Fluid across the entire stack—from reactive mobile UIs in Jetpack Compose to robust Node.js and PostgreSQL backends.',
+    title: 'White-Label Execution',
+    description: 'Fluid across the entire stack—from sleek, responsive client portals in React to robust Node.js, Python, and PostgreSQL backends that scale seamlessly under your brand.',
   },
 ];
 
 const stats = [
-  { value: '10+', label: 'Projects Built' },
-  { value: '5',   label: 'Years Coding'  },
-  { value: '4',   label: 'Core Languages'     },
-  { value: '3+',  label: 'AI Models Mastered' }, 
+  { value: '10+', label: 'Enterprise Systems' },
+  { value: '100%',  label: 'White-Labeled'  },
+  { value: '4',   label: 'Core Tech Stacks'     },
+  { value: '3+',  label: 'Custom AI Engines' }, 
 ];
 
 // One fade-up on section enter, staggered children
@@ -77,7 +77,7 @@ export default function About() {
       >
         {/* Section label */}
         <motion.div variants={row} className="section-label mb-3">
-          About
+          The Studio
         </motion.div>
 
         {/* Heading */}
@@ -92,7 +92,7 @@ export default function About() {
           }}
         >
           Bridging the gap between<br />
-          <span style={{ color: 'var(--accent)' }}>complex systems and seamless experiences.</span>
+          <span style={{ color: 'var(--accent)' }}>ambitious agency sales and flawless technical execution.</span>
         </motion.h2>
 
         {/* Main grid: avatar + story */}
@@ -124,7 +124,7 @@ export default function About() {
                     letterSpacing: '-0.03em',
                   }}
                 >
-                  SF
+                  OP
                 </span>
                 <span
                   style={{
@@ -134,7 +134,7 @@ export default function About() {
                     textTransform: 'uppercase',
                   }}
                 >
-                  Developer & Builder
+                  OptiPropose Studio
                 </span>
               </div>
             </div>
@@ -179,7 +179,7 @@ export default function About() {
                 letterSpacing: '-0.02em',
               }}
             >
-              My Journey
+              Our Approach
             </h3>
 
             <div
@@ -187,25 +187,19 @@ export default function About() {
               style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.8 }}
             >
               <p>
-                My path into software wasn't traditional. I discovered a fascination with systems and logic that led me to write my first line of Python in 2020. What started as curiosity quickly evolved into an obsession with building.
+                Most marketing agencies hit a revenue ceiling because they lack the in-house engineering required to deliver complex, high-ticket software to their clients. They are forced to say "no" to lucrative custom portals, SaaS builds, and AI integrations.
               </p>
               <p>
-                I bypassed "tutorial hell" by diving straight into the deep end. By focusing on{' '}
-                <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-                  building real-world applications
-                </span>{' '}
-                rather than just following guides, I learned how to architect software that survives contact with actual users.
+                That is exactly where OptiPropose Studio steps in. I founded this studio to act as the hidden technical backbone for growth-focused agencies. 
               </p>
               <p>
-                Today, I bridge the gap between complex logic and scalable code. Leveraging my background in{' '}
+                We approach architecture differently. Leveraging my background in{' '}
                 <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Political Science</span>, 
-                I bring a unique perspective to{' '}
-                <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>AI Multi-Agent Systems</span>—treating 
-                AI coordination like organizational diplomacy. I’ve shipped <span style={{ color: 'var(--accent)', fontWeight: 500 }}>10+ projects</span>, 
-                from AI-powered proposal generators to high-performance Next.js applications.
+                I treat{' '}
+                <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>AI Multi-Agent Systems</span> like organizational diplomacy—coordinating different logic models to execute complex business workflows flawlessly. It's not just about writing code; it's about engineering systems that solve systemic business bottlenecks.
               </p>
                 <p style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '1.05rem', marginTop: '2rem' }}>
-                Code is the baseline. Architecture is the craft. I design systems that bend constraints instead of breaking under them.
+                Code is the baseline. Architecture is the craft. We design systems that allow your agency to confidently sell $50k software contracts without sweating the technical details.
               </p>
             </div>
           </motion.div>
