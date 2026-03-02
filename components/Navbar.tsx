@@ -12,6 +12,8 @@ const navItems = [
   { name: 'Contact',    id: 'contact'    },
 ];
 
+
+
 export default function Navbar() {
   const [scrolled,    setScrolled]    = useState(false);
   const [menuOpen,    setMenuOpen]    = useState(false);
@@ -43,9 +45,20 @@ export default function Navbar() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    setMenuOpen(false);
+const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    if (menuOpen) {
+      // Mobile: Close the menu first, wait for Framer Motion to finish, then scroll
+      setMenuOpen(false);
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }, 250); // Matches your 0.25s Framer Motion transition duration!
+    } else {
+      // Desktop: Scroll instantly
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -84,18 +97,21 @@ export default function Navbar() {
             {/* Desktop nav */}
             <div className="hidden md:flex items-center gap-6">
               {navItems.map((item) => (
-                <button
+                <motion.button
                   key={item.id}
+                  // 1. Framer Motion magic for that premium tactile feel
+                  whileHover={{ y: -1 }} 
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => scrollTo(item.id)}
-                  className="nav-link"
+                  // 2. Moved color logic to Tailwind classes so HOVER actually works!
+                  className={`relative cursor-pointer py-1 transition-colors duration-200 ${
+                    activeId === item.id 
+                      ? 'text-[var(--text-primary)]' 
+                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                  }`}
                   style={{
                     background: 'none',
                     border: 'none',
-                    cursor: 'pointer',
-                    padding: '2px 0',
-                    color: activeId === item.id
-                      ? 'var(--text-primary)'
-                      : 'var(--text-secondary)',
                   }}
                 >
                   {item.name}
@@ -111,20 +127,9 @@ export default function Navbar() {
                       transition: 'width 250ms ease',
                     }}
                   />
-                </button>
+                </motion.button>
               ))}
-
-              {/* <a
-                href="/Seyi_Fatoki_Resume.pdf"
-                download
-                className="btn-primary"
-                style={{ fontSize: '0.8rem', padding: '0.45rem 1rem' }}
-              >
-                Resume
-              </a> */}
             </div>
-
-            {/* Mobile menu toggle */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="md:hidden p-1.5"
@@ -152,6 +157,8 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+
+        
 
         {/* Mobile menu */}
         <AnimatePresence>
@@ -185,17 +192,8 @@ export default function Navbar() {
                     {item.name}
                   </button>
                 ))}
-
-                <div className="pt-3">
-                  <a
-                    href="/Seyi_Fatoki_Resume.pdf"
-                    download
-                    className="btn-primary w-full justify-center"
-                    style={{ fontSize: '0.875rem' }}
-                  >
-                    Download Resume
-                  </a>
-                </div>
+                {/* <div className="pt-3">
+                </div> */}
               </div>
             </motion.div>
           )}
