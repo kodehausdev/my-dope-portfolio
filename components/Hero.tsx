@@ -1,4 +1,5 @@
 'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
@@ -59,7 +60,7 @@ export default function Hero() {
             {/* Label */}
             <motion.div variants={item} className="mb-4">
               <span className="text-sm font-medium tracking-widest uppercase" style={{ color: 'var(--text-ghost)' }}>
-                Hi, I'm
+                Welcome to
               </span>
             </motion.div>
 
@@ -76,7 +77,7 @@ export default function Hero() {
                 transformStyle: 'preserve-3d',
               }}
             >
-              {['Seyi', 'Fatoki'].map((word) => (
+              {['OptiPropose', 'Studio'].map((word) => (
                 <motion.span key={word} variants={nameWord} style={{ display: 'inline-block', color: 'var(--text-primary)' }}>
                   {word}
                 </motion.span>
@@ -89,48 +90,29 @@ export default function Hero() {
               className="font-medium mb-4"
               style={{ fontSize: 'clamp(0.9rem, 2vw, 1.2rem)', color: 'var(--accent)', letterSpacing: '0.01em' }}
             >
-              AI Systems & Full-Stack Developer
+              Your White-Label Engineering Partner
             </motion.p>
 
             {/* Tagline */}
             <motion.p
               variants={item}
-              className="mb-3"
-              style={{ fontSize: 'clamp(0.9rem, 1.6vw, 1.05rem)', color: 'var(--text-secondary)', maxWidth: '480px', lineHeight: 1.75 }}
+              className="mb-6 mx-auto lg:mx-0"
+              style={{ fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', color: 'var(--text-secondary)', maxWidth: '540px', lineHeight: 1.75 }}
             >
-              Building intelligent applications with{' '}
-              <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>AI</span>,{' '}
-              <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Next.js (React)</span>, and{' '}
-              <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Node.js</span>
+              The technical backend for growth-focused digital agencies. You sell high-ticket custom software, client portals, and AI automations. We architect and build them.
             </motion.p>
 
-            {/* Sub-tagline / USP (Updated sizing and color) */}
-            <motion.p
-              variants={item}
-              className="mb-10 font-medium"
-              style={{ fontSize: 'clamp(1rem, 1.5vw, 1.15rem)', color: 'var(--text-secondary)', maxWidth: '460px', lineHeight: 1.6 }}
-            >
-              From solo scripts to multi-agent systems — I build things
-              that work while you sleep.
-            </motion.p>
-
-            {/* CTA Buttons (Updated Resume to Download CV) */}
+            {/* CTA Buttons */}
             <motion.div variants={item} className="flex flex-wrap gap-3 justify-center lg:justify-start mb-8">
               <button onClick={() => scrollToSection('projects')} className="btn-primary">
-                View My Work
+                View Capabilities
               </button>
               <button onClick={() => scrollToSection('contact')} className="btn-outline">
-                Get In Touch
+                Discuss a Project
               </button>
-              <a href="/Seyi_Fatoki_Resume.pdf" download className="btn-outline flex items-center gap-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Download CV
-              </a>
             </motion.div>
 
-            {/* Social Links */}
+            {/* Social Links & Email Copy */}
             <motion.div variants={item} className="flex gap-3 justify-center lg:justify-start mb-8">
               {[
                 {
@@ -152,7 +134,7 @@ export default function Hero() {
                 </a>
               ))}
               <button
-                onClick={() => navigator.clipboard.writeText('hi.kodehaus@gmail.com')}
+                onClick={() => navigator.clipboard.writeText('kodehausdev@optipropose.com')}
                 aria-label="Copy email"
                 className="p-2.5 rounded-md transition-colors duration-150"
                 style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)', color: 'var(--text-secondary)', cursor: 'pointer' }}
@@ -165,7 +147,7 @@ export default function Hero() {
               </button>
             </motion.div>
 
-            {/* Scroll indicator (Added mt-4 for breathing room) */}
+            {/* Scroll indicator (Desktop) */}
             <motion.button
               variants={item}
               onClick={() => scrollToSection('about')}
@@ -191,20 +173,9 @@ export default function Hero() {
             style={{ 
               width: '100%', 
               maxWidth: '420px', 
-              minHeight: '260px' // <-- Reserve this space so the layout doesn't jump!
+              minHeight: '260px' 
             }}
           >
-            {/* The Glow Effect
-            <div 
-              className="absolute inset-0 rounded-full pointer-events-none" 
-              style={{ 
-                background: 'var(--accent)', 
-                opacity: 0.12, 
-                filter: 'blur(80px)',
-                transform: 'scale(0.9)'
-              }} 
-            /> */}
-
             <div className="relative z-10">
               <Terminal />
             </div>

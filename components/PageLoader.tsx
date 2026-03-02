@@ -124,7 +124,7 @@ export default function PageLoader() {
 
             {/* SF initials */}
             <div className="flex items-end gap-0.5 mb-0">
-              {['S', 'F'].map((letter, i) => (
+              {['O', 'P'].map((letter, i) => (
                 <motion.span
                   key={letter}
                   custom={i}
@@ -161,7 +161,7 @@ export default function PageLoader() {
                     textTransform: 'uppercase',
                     color: 'var(--text-ghost)',
                   }}>
-                    Seyi Fatoki
+                    Optipropose
                   </p>
 
                   {/* Pulsing tap indicator */}

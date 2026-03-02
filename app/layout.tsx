@@ -18,57 +18,46 @@ const dmSerifDisplay = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  // 🔥 ADD THIS: Required by Next.js for resolving absolute image URLs
-  metadataBase: new URL("https://seyi.dev"), // Replace with your actual live domain!
+  // 🔥 Pointing to your live agency domain
+  metadataBase: new URL("https://studio.optipropose.com"), 
   
-  title: "Seyi Fatoki — AI Systems & Full-Stack Developer",
+  title: "OptiPropose Studio | Your White-Label Engineering Partner",
   description:
-    "Self-taught developer building AI-powered systems and automation tools. Creator of OptiPropose — a multi-agent proposal platform — and HustleHawk, an intelligent job scraper. React, Node.js, Python, and LLM integration.",
+    "The technical backend for growth-focused digital agencies. We architect and build high-ticket custom software, client portals, and multi-agent AI automations.",
   keywords: [
-    "Seyi Fatoki",
-    "AI Developer",
-    "Multi-Agent Systems",
-    "Full Stack Developer",
-    "LLM Integration",
-    "Automation Engineer",
-    "OptiPropose",
-    "HustleHawk",
-    "React Developer",
-    "Node.js",
-    "Python Automation",
-    "AI SaaS",
-    "Prompt Engineering",
-    "Web Developer",
-    "Software Engineer",
-    "Abuja Nigeria",
+    "OptiPropose Studio",
+    "White-label development",
+    "Agency technical partner",
+    "Custom SaaS development",
+    "AI Automation for Agencies",
+    "White-label Client Portals",
+    "High-Volume Architecture",
+    "B2B Software Engineering",
   ],
-  authors: [{ name: "Seyi Fatoki" }],
-  creator: "Seyi Fatoki",
+  authors: [{ name: "OptiPropose Studio" }],
+  creator: "OptiPropose Studio",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://seyi.dev", // Replace with actual domain
-    title: "Seyi Fatoki — AI Systems & Full-Stack Developer",
+    url: "https://studio.optipropose.com",
+    title: "OptiPropose Studio | White-Label Engineering",
     description:
-      "Building AI-powered systems that go beyond wrappers. Multi-agent automation, intelligent tooling, and production-grade full-stack apps.",
-    siteName: "Seyi Fatoki",
-    // 🔥 ADD THIS: The image that shows up on LinkedIn/Discord
+      "The technical backend for growth-focused digital agencies. We build the complex AI systems and custom software you sell to your clients.",
+    siteName: "OptiPropose Studio",
     images: [
       {
-        url: "/og-image.png", // Just drop a 1200x630 screenshot of your hero in the public folder
+        url: "/og-image.png", 
         width: 1200,
         height: 630,
-        alt: "Seyi Fatoki Portfolio Preview",
+        alt: "OptiPropose Studio - White-Label Engineering",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image", // This tells Twitter to make the image massive
-    title: "Seyi Fatoki — AI Systems & Full-Stack Developer",
+    card: "summary_large_image", 
+    title: "OptiPropose Studio | White-Label Engineering",
     description:
-      "Building AI-powered systems that go beyond wrappers. Multi-agent automation, intelligent tooling, and production-grade full-stack apps.",
-    creator: "@seyifatoki",
-    // 🔥 ADD THIS:
+      "The technical backend for growth-focused digital agencies. We build the complex AI systems and custom software you sell to your clients.",
     images: ["/og-image.png"], 
   },
   robots: {

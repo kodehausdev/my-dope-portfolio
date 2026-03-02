@@ -57,7 +57,7 @@ export default function Contact() {
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          subject: `New System Inquiry from ${formData.name}`,
+          subject: `White-Label Partnership Inquiry from ${formData.name}`,
         }),
       });
       const result = await response.json();
@@ -78,8 +78,8 @@ export default function Contact() {
   const info = [
     {
       label: 'Email',
-      value: 'hi.kodehaus@gmail.com',
-      action: () => navigator.clipboard.writeText('hi.kodehaus@gmail.com'),
+      value: 'kodehausdev@optipropose.com',
+      action: () => navigator.clipboard.writeText('kodehausdev@optipropose.com'),
       hint: 'Click to copy',
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,7 +89,7 @@ export default function Contact() {
     },
     {
       label: 'Location',
-      value: 'Abuja, Nigeria',
+      value: 'Global / Remote',
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
@@ -111,7 +111,7 @@ export default function Contact() {
   const socials = [
     {
       name: 'GitHub',
-      sub: 'Review the code',
+      sub: 'Review our architecture',
       href: 'https://github.com/kodehausdev',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -154,7 +154,7 @@ export default function Contact() {
       >
         {/* Section label */}
         <motion.div variants={row} className="section-label mb-3">
-          Contact
+          Partnership
         </motion.div>
 
         {/* Heading */}
@@ -167,7 +167,7 @@ export default function Contact() {
             color: 'var(--text-primary)',
           }}
         >
-          Let's architect your next system.
+          Let's build your next high-ticket system.
         </motion.h2>
 
         <motion.p
@@ -180,7 +180,7 @@ export default function Contact() {
             lineHeight: 1.6,
           }}
         >
-          Whether you need a complex multi-agent AI system, a scalable data pipeline, or just want to talk software architecture — my inbox is open.
+          Whether you have an overflow of client work, need a complex AI integration, or want to discuss a dedicated white-label partnership — my inbox is open.
         </motion.p>
 
         <div className="grid md:grid-cols-5 gap-12">
@@ -189,7 +189,7 @@ export default function Contact() {
           <motion.div variants={row} className="md:col-span-3 space-y-5">
 
             <div>
-              <label htmlFor="name" style={labelBase}>Name</label>
+              <label htmlFor="name" style={labelBase}>Agency / Name</label>
               <input
                 type="text"
                 id="name"
@@ -198,7 +198,7 @@ export default function Contact() {
                 onChange={handleChange}
                 onFocus={() => setFocused('name')}
                 onBlur={() => setFocused(null)}
-                placeholder="Your name"
+                placeholder="Your agency or name"
                 style={{
                   ...inputBase,
                   borderColor: focused === 'name' ? 'var(--accent)' : 'var(--bg-border)',
@@ -208,7 +208,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="email" style={labelBase}>Email</label>
+              <label htmlFor="email" style={labelBase}>Work Email</label>
               <input
                 type="email"
                 id="email"
@@ -217,7 +217,7 @@ export default function Contact() {
                 onChange={handleChange}
                 onFocus={() => setFocused('email')}
                 onBlur={() => setFocused(null)}
-                placeholder="your@email.com"
+                placeholder="you@youragency.com"
                 style={{
                   ...inputBase,
                   borderColor: focused === 'email' ? 'var(--accent)' : 'var(--bg-border)',
@@ -227,7 +227,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="message" style={labelBase}>Message</label>
+              <label htmlFor="message" style={labelBase}>Project Details</label>
               <textarea
                 id="message"
                 name="message"
@@ -236,7 +236,7 @@ export default function Contact() {
                 onFocus={() => setFocused('message')}
                 onBlur={() => setFocused(null)}
                 rows={6}
-                placeholder="Describe your system requirements or project idea..."
+                placeholder="Describe your client's requirements or partnership idea..."
                 style={{
                   ...inputBase,
                   borderColor: focused === 'message' ? 'var(--accent)' : 'var(--bg-border)',
@@ -293,7 +293,7 @@ export default function Contact() {
                   borderRadius: '6px',
                 }}
               >
-                System error. Please email me directly at hi.kodehaus@gmail.com
+                System error. Please email me directly at kodehausdev@optipropose.com
               </motion.p>
             )}
           </motion.div>
@@ -413,10 +413,10 @@ export default function Contact() {
           style={{ borderTop: '1px solid var(--bg-border)' }}
         >
           <p style={{ fontSize: '0.8rem', color: 'var(--text-ghost)' }}>
-            © 2026 Seyi Fatoki. All rights reserved.
+            © 2026 OptiPropose Studio. All rights reserved.
           </p>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-ghost)' }}>
-            Built with Next.js, TypeScript, and Tailwind CSS
+            Engineered with Next.js, TypeScript, & Tailwind
           </p>
         </motion.div>
       </motion.div>

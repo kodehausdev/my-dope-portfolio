@@ -17,7 +17,7 @@ const Terminal = () => {
             <div className="w-3 h-3 rounded-full bg-[#ffbd2e] opacity-80" />
             <div className="w-3 h-3 rounded-full bg-[#27c93f] opacity-80" />
           </div>
-          <div className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">seyi_os v1.0</div>
+          <div className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">kode_os v1.0</div>
         </div>
 
         {/* Body */}
@@ -36,32 +36,15 @@ const Terminal = () => {
                 deleteSpeed: 15,
                 cursor: '▋',
               }}
-              onInit={(typewriter) => {
+                onInit={(typewriter) => {
                 typewriter
-                  // SHOWCASE: AI & Logic
-                  .typeString('> Init <span style="color: #fbbf24;">Multi-Agent RAG</span>...')
-                  .pauseFor(400)
-                  .typeString(' <span style="color: #4ade80;">[READY]</span>')
-                  .pauseFor(1200)
+                  // Sequence 1: Infrastructure
+                  .typeString('> Initializing <span style="color: #fbbf24;">Client Infrastructure</span>...')
+                  .pauseFor(1000)
+                  .typeString('<br/>> Integrating <span style="color: #38bdf8;">AI Automation Pipeline</span>...')
+                  .pauseFor(1000)
+                  .typeString('<br/>> Status: <span style="color: #4ade80;">Deployed + Scalable</span>')                  .pauseFor(4000)
                   .deleteAll()
-
-                  // SHOWCASE: Engineering (React/Next)
-                  .typeString('> Mounting <span style="color: #38bdf8;">Next.js 15</span> Core...')
-                  .pauseFor(300)
-                  .typeString('<br/><span style="color: #94a3b8;">Status: Optimized (100 Lighthouse)</span>')
-                  .pauseFor(1500)
-                  .deleteAll()
-
-                  // SHOWCASE: Impact (The "Money" String)
-                  .typeString('> Optimizing LLM Workflows...')
-                  .pauseFor(600)
-                  .typeString('<br/><span style="color: #fb923c;">✔ 40% Latency Reduction</span>')
-                  .pauseFor(2500)
-                  .deleteAll()
-
-                  // FINAL STATUS
-                  .typeString('<span style="color: #4ade80;">System Online. Ready to Build.</span>')
-                  .pauseFor(3000)
                   .start();
               }}
             />
